@@ -29,9 +29,9 @@ function Contacts() {
                 <table className="table-auto text-left text-primary-color ">
                     <thead className='border-b border-border-color py-8'>
                         <tr>
-                        <th className="px-4 py-3 w-1/4 mb-6">Name</th>
-                        <th className="px-4 py-3 w-1/4 mb-6">Phone number</th>
-                        <th className="px-4 py-3 w-1/4 mb-6">Email address</th>
+                        <th className="px-4 py-3 w-1/4 pb-6">Name</th>
+                        <th className="px-4 py-3 w-1/4 pb-6">Phone number</th>
+                        <th className="px-4 py-3 w-1/4 pb-6">Email address</th>
                         </tr>
                     </thead>
                     <p className='px-4 text-placeholder-color mb-3 mt-6 font-bold'>Contacts(11)</p>

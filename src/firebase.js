@@ -13,9 +13,4 @@ var firebaseConfig = {
   measurementId: process.env.MEASUREMENT_ID,
 };
 
-firebase.initializeApp(firebaseConfig);
-
-const shoppingListCollection = firebase.firestore().collection('shopping_list');
-const { arrayUnion } = firebase.firestore.FieldValue;
-
-export { shoppingListCollection, arrayUnion };
+export const firebase =  firebase.initializeApp(firebaseConfig);

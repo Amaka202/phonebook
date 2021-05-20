@@ -1,7 +1,7 @@
  const CryptoJS = require("crypto-js");
  
 // encryption secret key, ideally should be an environment variable
- const secret = "secret";
+ const secret = process.env.REACT_APP_SECRET_KEY;
 
 // encrypt token
 export const encryptToken = (token, tokenType) => {
@@ -17,16 +17,17 @@ export const encryptToken = (token, tokenType) => {
 
 // decrypt encrypted token
 export const decryptToken = (tokenType) => {
-    localStorage.getItem(tokenType)
+    let token = localStorage.getItem(tokenType)
 	try {
 		if (
-			tokenType != null &&
-			tokenType !== "null"
+			token != null &&
+			token !== "null"
 		) {
-			let bytes = CryptoJS.AES.decrypt(tokenType.toString(), secret);
-			let decryptedToken = bytes.toString(CryptoJS.enc.Utf8);
+            console.log();
+			let bytes = CryptoJS.AES.decrypt(token.toString(), secret);
+            let decryptedToken = bytes.toString(CryptoJS.enc.Utf8);
 			return JSON.parse(decryptedToken);
-		}
+        }
 		return null;
 	} catch (e) {
 		return null;

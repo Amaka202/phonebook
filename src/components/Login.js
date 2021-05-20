@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import CustomHeader from './CustomHeader';
-import { Button, Loader }from 'rsuite';
+import { Button }from 'rsuite';
 import {encryptToken} from './helperFnxs';
 
 function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
     const [message, setMessage] = useState('');
-    const [loading, setLoading] = useState(false);
     const onSubmit = data => {
-        console.log(data);
         fetch('https://we-skillz-phonebook-task.herokuapp.com/api/v1/auth/login', {
         method: 'POST', 
         headers: {
@@ -21,7 +19,6 @@ function Login() {
         })
         .then(response => response.json())
         .then(data => {
-        console.log(data);
             if(!data.code){
                 encryptToken( data.token.accessToken, 'accessToken')
                 encryptToken(data.token.refreshToken, 'refreshToken')
@@ -35,6 +32,8 @@ function Login() {
             setMessage('Error Loging in')
         });
     };
+
+    
 
     return (
         <div>
@@ -71,11 +70,9 @@ function Login() {
                     {errors.password && <span className='text-red-600 italic text-xs'>{errors.password.message}</span>}
                 </div>
                 <div className=" mt-8" >
-                 <Button className='bg-primary-color w-full rounded p-3 text-sm text-white font-bold' type='submit'>
-                     Login
-                 </Button>
-                <Loader className='bg-primary-color text-red'/>
-
+                    <Button className='bg-primary-color w-full rounded p-3 text-sm text-white font-bold' type='submit'>
+                        Login
+                    </Button>
                 </div>
                 
             

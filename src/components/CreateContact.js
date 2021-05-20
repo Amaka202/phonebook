@@ -1,10 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
+import {decryptToken} from './helperFnxs';
 
 export default function Modal({  showContactForm, setShowContactForm }) {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const [message, setMessage] = useState('');
+
+    const handleCancel= () => {
+      setShowContactForm(false)
+      reset()
+    }
+
     const onSubmit = data => {
-        console.log(data);
+      let bearerToken = decryptToken('accessToken')
+        if(
+          bearerToken != null &&
+			    bearerToken !== "null"
+        ){ 
+          fetch('https://we-skillz-phonebook-task.herokuapp.com/api/v1/contacts', {
+          method: 'POST', 
+          headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${decryptToken('accessToken')}`
+          },
+          body: JSON.stringify(data),
+          })
+          .then(response => response.json())
+          .then(data => {
+              if(!data.code){
+                reset()
+                setShowContactForm(false)
+              }else{
+                  setMessage('Fill all required fields')  
+                  setTimeout(() => setMessage(''), 3000)          
+              }
+          })
+          .catch((error) => {
+              setMessage('Error Creating contact')
+          });
+        }else{
+          setMessage('Unauthorized') 
+          setTimeout(() => setMessage(''), 3000)
+        }
+        
     }
 
   return (
@@ -19,41 +57,43 @@ export default function Modal({  showContactForm, setShowContactForm }) {
           >
             <div className="relative w-auto my-6 mx-auto flex">
               <div className="border-0 rounded shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none ">
+
                 <div className="relative p-6 flex-auto md:p-12">
+              <p className='text-red-600 italic text-sm text-center'>{message}</p> 
                 <div className='bg-primary-color inline-block border rounded-round w-16 h-16 mb-6 flex justify-center align-center '>
                     <p className='text-center text-white font-bold self-center text-3xl'>J</p>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className="">
                 <div className="mb-4 flex">
                     <div className='mr-3'>
-                        <input name="firstname" placeholder="First name"  className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
-                            {...register("firstname", { 
+                        <input name="firstName" placeholder="First name"  className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
+                            {...register("firstName", { 
                                 required: 'This field is required',
                                 })}
                         />
-                        {errors.firstname && <span className='text-red-600 italic text-xs'>{errors.firstname.message}</span>}
+                        {errors.firstName && <span className='text-red-600 italic text-xs'>{errors.firstName.message}</span>}
                     </div>
                     <div>
-                        <input name="lastname" placeholder="Last name"  className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
-                            {...register("lastname", { 
+                        <input name="lastName" placeholder="Last name"  className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
+                            {...register("lastName", { 
                                 required: 'This field is required',
                                 })}
                         />
-                        {errors.lastname && <span className='text-red-600 italic text-xs'>{errors.lastname.message}</span>}
+                        {errors.lastName && <span className='text-red-600 italic text-xs'>{errors.lastName.message}</span>}
                     </div>
                 </div>
                 
                 <div className="mb-4">
 
-                    <input name="number" placeholder="Phone number" type='number' className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
+                    <input name="phoneNumber" placeholder="Phone number" type='number' className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
                         {...register("password", { 
                             required: 'This field is required',
                             })}
                     />
-                    {errors.password && <span className='text-red-600 italic text-xs'>{errors.password.message}</span>}
+                    {errors.phoneNumber && <span className='text-red-600 italic text-xs'>{errors.phoneNumber.message}</span>}
                 </div>
                 <div className="mb-4">
-                    <input name="email" placeholder="Email address"  className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
+                    <input name="address" placeholder="Email address" type='email' className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
                         {...register("email", { 
                             required: 'This field is required',
                               pattern: {
@@ -61,7 +101,7 @@ export default function Modal({  showContactForm, setShowContactForm }) {
                                 message: "invalid email address"
                         }})}
                     />
-                    {errors.email && <span className='text-red-600 italic text-xs'>{errors.email.message}</span>}
+                    {errors.address && <span className='text-red-600 italic text-xs'>{errors.address.message}</span>}
                 </div>
                 <div className="mb-4" >
                  <button className='bg-primary-color w-full rounded p-3 text-sm text-white font-bold' type='submit'>
@@ -72,7 +112,7 @@ export default function Modal({  showContactForm, setShowContactForm }) {
                 <div className=" " >
                  <button className='bg-white border border-border-color w-full rounded p-3 text-sm text-cancel-color font-bold' type='submit'
                     onClick={() => {
-                        setShowContactForm(false);
+                        handleCancel();
                     }}
                  >
                      Cancel
