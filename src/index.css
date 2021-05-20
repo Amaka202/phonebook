@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-    --unnamed-color-7e7e7e: #7E7E7E;
+    --cancel-color: #7E7E7E;
     --unnamed-color-bfbfbf: #BFBFBF;
-    --input-form-border-color: #E0E0E0;
-    --placeholder-green: #7FCAAD;
-    --hover-green: #E5FAF2;
+    --border-color: #E0E0E0;
+    --placeholder-green: #7FCAAD; 
+    --hover-green: #E5FAF2; 
     --primary-color: #00955C;
     --background-green: #F7FFFC;
 }
