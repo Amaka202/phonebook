@@ -37,44 +37,88 @@ function Contacts() {
                     <p className='px-4 text-placeholder-color mb-3 mt-6 font-bold'>Contacts(11)</p>
                     <tbody>
                         <tr className="hover:bg-hover-green hover:rounded-md">
-                        <td className="px-4 py-3 w-1/4">Umeh Chiamaka</td>
+                        <td className="px-4 py-3 w-1/4">
+                            <div className='flex justify-start align-start'>
+                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
+                                    <p className=' text-white font-bold self-center text-xl'>J</p>
+                                </div>
+                                <p className='self-center'>Umeh Chiamaka</p>
+                            </div>
+                        </td>
                         <td className="px-4 py-3 w-1/4">2738490164</td>
                         <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
                         </tr>
                         <tr className="hover:bg-hover-green hover:rounded-md">
-                        <td className="px-4 py-3 w-1/4">Umeh Chiamaka</td>
+                        <td className="px-4 py-3 w-1/4">
+                            <div className='flex justify-start align-start'>
+                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
+                                    <p className=' text-white font-bold self-center text-xl'>J</p>
+                                </div>
+                                <p className='self-center'>Umeh Chiamaka</p>
+                            </div>
+                        </td>
                         <td className="px-4 py-3 w-1/4">2738490164</td>
                         <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
                         </tr>
                         <tr className="hover:bg-hover-green hover:rounded-md">
-                        <td className="px-4 py-3 w-1/4">Umeh Chiamaka</td>
+                        <td className="px-4 py-3 w-1/4">
+                            <div className='flex justify-start align-start'>
+                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
+                                    <p className=' text-white font-bold self-center text-xl'>J</p>
+                                </div>
+                                <p className='self-center'>Umeh Chiamaka</p>
+                            </div>
+                        </td>
                         <td className="px-4 py-3 w-1/4">2738490164</td>
                         <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
                         </tr>
-                        <tr className="hover:bg-hover-green hover:rounded">
-                        <td className="px-4 py-3 w-1/4">Umeh Chiamaka</td>
+                        <tr className="hover:bg-hover-green hover:rounded-md">
+                        <td className="px-4 py-3 w-1/4">
+                            <div className='flex justify-start align-start'>
+                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
+                                    <p className=' text-white font-bold self-center text-xl'>J</p>
+                                </div>
+                                <p className='self-center'>Umeh Chiamaka</p>
+                            </div>
+                        </td>
                         <td className="px-4 py-3 w-1/4">2738490164</td>
                         <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
                         </tr>
-                        <tr className="hover:bg-hover-green hover:rounded">
-                        <td className="px-4 py-4 w-1/4">Umeh Chiamaka</td>
-                        <td className="px-4 py-4 w-1/4">2738490164</td>
-                        <td className="px-4 py-4 w-1/4">amakaumeh01@gmail.com</td>
+                        <tr className="hover:bg-hover-green hover:rounded-md">
+                        <td className="px-4 py-3 w-1/4">
+                            <div className='flex justify-start align-start'>
+                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
+                                    <p className=' text-white font-bold self-center text-xl'>J</p>
+                                </div>
+                                <p className='self-center'>Umeh Chiamaka</p>
+                            </div>
+                        </td>
+                        <td className="px-4 py-3 w-1/4">2738490164</td>
+                        <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
                         </tr>
-                        <tr className="hover:bg-hover-green hover:rounded">
-                        <td className="px-4 py-4 w-1/4">Umeh Chiamaka</td>
-                        <td className="px-4 py-4 w-1/4">2738490164</td>
-                        <td className="px-4 py-4 w-1/4">amakaumeh01@gmail.com</td>
+                        <tr className="hover:bg-hover-green hover:rounded-md">
+                        <td className="px-4 py-3 w-1/4">
+                            <div className='flex justify-start align-start'>
+                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
+                                    <p className=' text-white font-bold self-center text-xl'>J</p>
+                                </div>
+                                <p className='self-center'>Umeh Chiamaka</p>
+                            </div>
+                        </td>
+                        <td className="px-4 py-3 w-1/4">2738490164</td>
+                        <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
                         </tr>
-                        <tr className="hover:bg-hover-green">
-                        <td className="px-4 py-4 w-1/4">Umeh Chiamaka</td>
-                        <td className="px-4 py-4 w-1/4">2738490164</td>
-                        <td className="px-4 py-4 w-1/4">amakaumeh01@gmail.com</td>
-                        </tr>
-                        <tr className="hover:bg-hover-green">
-                        <td className="px-4 py-4 w-1/4">Umeh Chiamaka</td>
-                        <td className="px-4 py-4 w-1/4">2738490164</td>
-                        <td className="px-4 py-4 w-1/4">amakaumeh01@gmail.com</td>
+                        <tr className="hover:bg-hover-green hover:rounded-md">
+                        <td className="px-4 py-3 w-1/4">
+                            <div className='flex justify-start align-start'>
+                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
+                                    <p className=' text-white font-bold self-center text-xl'>J</p>
+                                </div>
+                                <p className='self-center'>Umeh Chiamaka</p>
+                            </div>
+                        </td>
+                        <td className="px-4 py-3 w-1/4">2738490164</td>
+                        <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
                         </tr>
                     </tbody>
                 </table>

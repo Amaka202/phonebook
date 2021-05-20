@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import {Link, useHistory} from 'react-router-dom';
-// import { Alert } from 'rsuite';
 import CustomHeader from './CustomHeader';
-
 import { Button, Loader }from 'rsuite';
+import {encryptToken} from './helperFnxs';
 
 function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -22,23 +21,27 @@ function Login() {
         })
         .then(response => response.json())
         .then(data => {
-        console.log('Success:', data);
-            if(data.code === 401){
-                setTimeout(setMessage(data.message), 3000)
+        console.log(data);
+            if(!data.code){
+                encryptToken( data.token.accessToken, 'accessToken')
+                encryptToken(data.token.refreshToken, 'refreshToken')
+                history.push('/contacts')
+            }else{
+                setMessage(data.message)  
+                setTimeout(() => setMessage(''), 3000)          
             }
         })
         .catch((error) => {
-        console.error('Error:', error);
+            setMessage('Error Loging in')
         });
     };
-    
 
     return (
         <div>
             <CustomHeader text='Login'/>
             <div className='bg-background-color min-h-minH mt-1 flex justify-center align-center'>
             <section className="md:mt-28 md:mb-44 self-center border border-border-color rounded md:p-12 p-4 m-4 bg-white md:w-1/3 w-full">
-            <p>{message}</p> 
+            <p className='text-red-600 italic text-sm text-center'>{message}</p> 
             <form onSubmit={handleSubmit(onSubmit)} className="">
                 <p className='text-primary-color md:text-3xl text-xl font-bold text-center md:mb-14 mb-10'>Welcome to Phonebook!</p>
 
