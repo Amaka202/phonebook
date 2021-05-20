@@ -9,13 +9,15 @@ module.exports = {
         "input-border": "var(--input-border-green)",
         "background-color": "var(--background-green)",
         "placeholder-color": "var(--placeholder-green)",
-        "input-form-border": "var( --input-form-border-color)",
+        "border-color": "var( --border-color)",
+        "cancel-color": "var( --cancel-color)",
       },
       boxShadow: {
         bottom: '0px 3px 6px #4EB99029'
       },
       borderRadius: {
-        bottom: '0px 0px 6px 6px'
+        bottom: '0px 0px 6px 6px',
+        round: '50%'
       },
       minHeight: {
         minH: '90vh'
@@ -23,7 +25,8 @@ module.exports = {
       outline: {
         green: ['1px solid #00955C'],
         
-      }
+      },
+      tableLayout: ['hover', 'focus'],
     },
   },
   variants: {
