@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomHeader from './CustomHeader';
 import { Button }from 'rsuite';
 import CreateContact from './CreateContact';
+import {db} from '../firebase';
 
 function Contacts() {
-    const [showContactForm, setShowContactForm] = useState(false)
+    const [showContactForm, setShowContactForm] = useState(false);
+    const [showLastRow, setShowLastRow] = useState('none');
 
+    const style = {
+        display: showLastRow
+    }
     const handleSHowContact = () => {
         setShowContactForm(true)
     }
+
+    useEffect(() => {
+        db.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+            });
+        });
+    }, [])
     return (
         <div>
             <CustomHeader text="Logout"/>
@@ -26,100 +40,31 @@ function Contacts() {
                     </Button>
                 </div>
                 <div className='border border-border-color rounded w-4/5 bg-white p-6'>
-                <table className="table-auto text-left text-primary-color ">
+                <table className="table-auto text-left text-primary-color w-full">
                     <thead className='border-b border-border-color py-8'>
-                        <tr>
-                        <th className="px-4 py-3 w-1/4 pb-6">Name</th>
-                        <th className="px-4 py-3 w-1/4 pb-6">Phone number</th>
-                        <th className="px-4 py-3 w-1/4 pb-6">Email address</th>
+                        <tr >
+                        <th className="tableh">Name</th>
+                        <th className="tableh">Phone number</th>
+                        <th className="tableh">Email address</th>
+                        <th className="tableh"></th>
                         </tr>
                     </thead>
                     <p className='px-4 text-placeholder-color mb-3 mt-6 font-bold'>Contacts(11)</p>
                     <tbody>
-                        <tr className="hover:bg-hover-green hover:rounded-md">
-                        <td className="px-4 py-3 w-1/4">
+                        <tr className="hover:bg-hover-green hover:rounded-md" onMouseEnter={() => setShowLastRow('block')} onMouseLeave={() => setShowLastRow('none')}>
+                        <td className="px-4 py-3 w-1/5">
                             <div className='flex justify-start align-start'>
-                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
+                                <div className='initialDiv'>
                                     <p className=' text-white font-bold self-center text-xl'>J</p>
                                 </div>
                                 <p className='self-center'>Umeh Chiamaka</p>
                             </div>
                         </td>
-                        <td className="px-4 py-3 w-1/4">2738490164</td>
-                        <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
+                        <td className="px-4 py-3 w-1/5">2738490164</td>
+                        <td className="px-4 py-3 w-1/5">amakaumeh01@gmail.com</td>
+                        <td className="px-4 py-3 w-1/5" style={style}>Now!</td>
                         </tr>
-                        <tr className="hover:bg-hover-green hover:rounded-md">
-                        <td className="px-4 py-3 w-1/4">
-                            <div className='flex justify-start align-start'>
-                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
-                                    <p className=' text-white font-bold self-center text-xl'>J</p>
-                                </div>
-                                <p className='self-center'>Umeh Chiamaka</p>
-                            </div>
-                        </td>
-                        <td className="px-4 py-3 w-1/4">2738490164</td>
-                        <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
-                        </tr>
-                        <tr className="hover:bg-hover-green hover:rounded-md">
-                        <td className="px-4 py-3 w-1/4">
-                            <div className='flex justify-start align-start'>
-                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
-                                    <p className=' text-white font-bold self-center text-xl'>J</p>
-                                </div>
-                                <p className='self-center'>Umeh Chiamaka</p>
-                            </div>
-                        </td>
-                        <td className="px-4 py-3 w-1/4">2738490164</td>
-                        <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
-                        </tr>
-                        <tr className="hover:bg-hover-green hover:rounded-md">
-                        <td className="px-4 py-3 w-1/4">
-                            <div className='flex justify-start align-start'>
-                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
-                                    <p className=' text-white font-bold self-center text-xl'>J</p>
-                                </div>
-                                <p className='self-center'>Umeh Chiamaka</p>
-                            </div>
-                        </td>
-                        <td className="px-4 py-3 w-1/4">2738490164</td>
-                        <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
-                        </tr>
-                        <tr className="hover:bg-hover-green hover:rounded-md">
-                        <td className="px-4 py-3 w-1/4">
-                            <div className='flex justify-start align-start'>
-                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
-                                    <p className=' text-white font-bold self-center text-xl'>J</p>
-                                </div>
-                                <p className='self-center'>Umeh Chiamaka</p>
-                            </div>
-                        </td>
-                        <td className="px-4 py-3 w-1/4">2738490164</td>
-                        <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
-                        </tr>
-                        <tr className="hover:bg-hover-green hover:rounded-md">
-                        <td className="px-4 py-3 w-1/4">
-                            <div className='flex justify-start align-start'>
-                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
-                                    <p className=' text-white font-bold self-center text-xl'>J</p>
-                                </div>
-                                <p className='self-center'>Umeh Chiamaka</p>
-                            </div>
-                        </td>
-                        <td className="px-4 py-3 w-1/4">2738490164</td>
-                        <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
-                        </tr>
-                        <tr className="hover:bg-hover-green hover:rounded-md">
-                        <td className="px-4 py-3 w-1/4">
-                            <div className='flex justify-start align-start'>
-                                <div className='bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center align-center self-center'>
-                                    <p className=' text-white font-bold self-center text-xl'>J</p>
-                                </div>
-                                <p className='self-center'>Umeh Chiamaka</p>
-                            </div>
-                        </td>
-                        <td className="px-4 py-3 w-1/4">2738490164</td>
-                        <td className="px-4 py-3 w-1/4">amakaumeh01@gmail.com</td>
-                        </tr>
+                        
                     </tbody>
                 </table>
                 </div>

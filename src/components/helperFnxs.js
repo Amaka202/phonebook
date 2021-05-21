@@ -1,6 +1,5 @@
  const CryptoJS = require("crypto-js");
  
-// encryption secret key, ideally should be an environment variable
  const secret = process.env.REACT_APP_SECRET_KEY;
 
 // encrypt token
@@ -33,4 +32,12 @@ export const decryptToken = (tokenType) => {
 		return null;
 	}
 };
+
+export const isTokenExpired = () => {
+    let decryptedExpirydate = decryptToken('tokenExpiryDate')
+    //to milliseconds
+    let currentDate = Date.parse(new Date())
+    let tokenExpiryDateInMilliseconds = Date.parse(decryptedExpirydate)
+    return currentDate > tokenExpiryDateInMilliseconds;
+}
 
