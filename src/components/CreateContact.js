@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
-import {decryptToken} from './helperFnxs';
+import {createContact, getNewToken} from './apiCalls';
+import {decryptToken, isTokenExpired} from './helperFnxs';
 
 export default function Modal({  showContactForm, setShowContactForm }) {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -12,37 +13,27 @@ export default function Modal({  showContactForm, setShowContactForm }) {
     }
 
     const onSubmit = data => {
-      let bearerToken = decryptToken('accessToken')
+      let bearerToken = decryptToken('pbAccessToken');
+
         if(
           bearerToken != null &&
 			    bearerToken !== "null"
         ){ 
-          fetch('https://we-skillz-phonebook-task.herokuapp.com/api/v1/contacts', {
-          method: 'POST', 
-          headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${decryptToken('accessToken')}`
-          },
-          body: JSON.stringify(data),
-          })
-          .then(response => response.json())
-          .then(data => {
-              if(!data.code){
-                reset()
-                setShowContactForm(false)
-              }else{
-                  setMessage('Fill all required fields')  
-                  setTimeout(() => setMessage(''), 3000)          
-              }
-          })
-          .catch((error) => {
-              setMessage('Error Creating contact')
-          });
+          let tokenExpired = isTokenExpired();
+          if(!tokenExpired){
+            createContact(data, reset, setShowContactForm, setMessage)
+          }else{
+            getNewToken(setMessage).then(() => {
+              createContact(data, reset, setShowContactForm, setMessage)
+            }).catch((e) => {
+              setMessage('Unauthorized') 
+              setTimeout(() => setMessage(''), 3000)
+            })
+          }
         }else{
           setMessage('Unauthorized') 
           setTimeout(() => setMessage(''), 3000)
         }
-        
     }
 
   return (
@@ -53,7 +44,7 @@ export default function Modal({  showContactForm, setShowContactForm }) {
             role="dialog"
             aria-modal="true"
             aria-describedby="dialog-message"
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+            className="modalSection"
           >
             <div className="relative w-auto my-6 mx-auto flex">
               <div className="border-0 rounded shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none ">
@@ -66,7 +57,7 @@ export default function Modal({  showContactForm, setShowContactForm }) {
                 <form onSubmit={handleSubmit(onSubmit)} className="">
                 <div className="mb-4 flex">
                     <div className='mr-3'>
-                        <input name="firstName" placeholder="First name"  className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
+                        <input name="firstName" placeholder="First name"  className='contactsForm'
                             {...register("firstName", { 
                                 required: 'This field is required',
                                 })}
@@ -74,7 +65,7 @@ export default function Modal({  showContactForm, setShowContactForm }) {
                         {errors.firstName && <span className='text-red-600 italic text-xs'>{errors.firstName.message}</span>}
                     </div>
                     <div>
-                        <input name="lastName" placeholder="Last name"  className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
+                        <input name="lastName" placeholder="Last name"  className='contactsForm'
                             {...register("lastName", { 
                                 required: 'This field is required',
                                 })}
@@ -85,7 +76,7 @@ export default function Modal({  showContactForm, setShowContactForm }) {
                 
                 <div className="mb-4">
 
-                    <input name="phoneNumber" placeholder="Phone number" type='number' className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
+                    <input name="phoneNumber" placeholder="Phone number" type='number' className='contactsForm'
                         {...register("password", { 
                             required: 'This field is required',
                             })}
@@ -93,7 +84,7 @@ export default function Modal({  showContactForm, setShowContactForm }) {
                     {errors.phoneNumber && <span className='text-red-600 italic text-xs'>{errors.phoneNumber.message}</span>}
                 </div>
                 <div className="mb-4">
-                    <input name="address" placeholder="Email address" type='email' className='border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none'
+                    <input name="address" placeholder="Email address" type='email' className='contactsForm'
                         {...register("email", { 
                             required: 'This field is required',
                               pattern: {

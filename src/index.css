@@ -12,3 +12,28 @@
     --background-green: #F7FFFC;
 }
 
+
+.input {
+    @apply border border-primary-color w-full rounded p-3 text-sm placeholder-placeholder-color focus:outline-none;
+    
+  }
+
+.loginSection {
+    @apply md:mt-28 md:mb-44 self-center border border-border-color rounded md:p-12 p-4 m-4 bg-white md:w-1/3 w-full;
+}
+
+.tableh{
+    @apply px-4 py-3 w-1/4 pb-6
+}
+
+.initialNameDiv{
+    @apply bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center self-center
+}
+
+.contactsForm {
+    @apply border border-primary-color w-full rounded p-3 text-base placeholder-placeholder-color focus:outline-none
+}
+
+.modalSection{
+    @apply justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none
+}
