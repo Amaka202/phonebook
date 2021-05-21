@@ -35,7 +35,7 @@ export default function Modal({  showContactForm, setShowContactForm }) {
           setTimeout(() => setMessage(''), 3000)
         }
     }
-
+ 
   return (
     <>
       {showContactForm ? (

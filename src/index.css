@@ -19,7 +19,7 @@
   }
 
 .loginSection {
-    @apply md:mt-28 md:mb-44 self-center border border-border-color rounded md:p-12 p-4 m-4 bg-white md:w-1/3 w-full;
+    @apply md:mt-28 mt-12 md:mb-44 md:self-center border border-border-color rounded md:p-12 p-4 m-4 bg-white md:w-1/3 w-full h-3/4;
 }
 
 .tableh{

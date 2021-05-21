@@ -31,8 +31,8 @@ function Contacts() {
                 showContactForm={showContactForm}
                 setShowContactForm={setShowContactForm}
             />
-            <div className='bg-background-color min-h-minH mt-1 flex md:p-12'>
-                <div className='w-1/5 mr-6'>
+            <div className='bg-background-color min-h-minH mt-1 flex p-6 md:p-12 md:flex-row flex-col'>
+                <div className='md:w-1/5 md:mr-6 mb-6'>
                     <Button className='bg-primary-color w-full rounded p-3 text-sm text-white font-bold mb-2' type='submit' onClick={() => handleSHowContact()}>
                     + Create contact
                     </Button>
@@ -40,7 +40,7 @@ function Contacts() {
                     Contacts
                     </Button>
                 </div>
-                <div className='border border-border-color rounded w-4/5 bg-white p-6'>
+                <div className='border border-border-color rounded md:w-4/5 bg-white p-6 overflow-auto'>
                 <table className="table-auto text-left text-primary-color w-full">
                     <thead className='border-b border-border-color py-8'>
                         <tr >
