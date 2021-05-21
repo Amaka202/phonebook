@@ -6,14 +6,14 @@ let refreshToken = decryptToken('pbRefreshToken');
 
 export const loginFnx = async (data, setMessage) => {
   try{
-    let response = fetch('https://we-skillz-phonebook-task.herokuapp.com/api/v1/auth/login', {
+    let response = await fetch('https://we-skillz-phonebook-task.herokuapp.com/api/v1/auth/login', {
         method: 'POST', 
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
         })
-        let loginData = response.json()
+        let loginData = await response.json()
         return loginData;
   }catch(e){
     setMessage('Error Loging in')
@@ -32,7 +32,7 @@ export const createContact = (data, reset, setShowContactForm, setMessage) => {
             })
             .then(response => response.json())
             .then(data => {
-                if(!data.code){
+                 if(!data.code){
                   reset()
                   setShowContactForm(false)
                 }else{

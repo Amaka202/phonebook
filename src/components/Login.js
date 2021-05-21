@@ -30,6 +30,7 @@ function Login() {
     return (
         <div>
             <CustomHeader text='Login'/>
+            
             <div className='bg-background-color min-h-minH mt-1 flex justify-center align-center'>
             <section className="loginSection">
             <p className='text-red-600 italic text-sm text-center'>{message}</p> 
@@ -65,6 +66,7 @@ function Login() {
                     <Button className='bg-primary-color w-full rounded p-3 text-sm text-white font-bold' type='submit'>
                         Login
                     </Button>
+                    
                 </div>
                 
             

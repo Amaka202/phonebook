@@ -50,7 +50,7 @@ export default function Modal({  showContactForm, setShowContactForm }) {
               <div className="border-0 rounded shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none ">
 
                 <div className="relative p-6 flex-auto md:p-12">
-              <p className='text-red-600 italic text-sm text-center'>{message}</p> 
+              <p className='text-red-600 text-sm text-center'>{message}</p> 
                 <div className='bg-primary-color inline-block border rounded-round w-16 h-16 mb-6 flex justify-center align-center '>
                     <p className='text-center text-white font-bold self-center text-3xl'>J</p>
                 </div>
