@@ -23,6 +23,7 @@ function Contacts() {
             });
         });
     }, [])
+
     return (
         <div>
             <CustomHeader text="Logout"/>
@@ -69,7 +70,6 @@ function Contacts() {
                 </table>
                 </div>
             </div>
-            <h1>hey hnn</h1>
         </div>
     )
 }
