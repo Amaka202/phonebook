@@ -41,3 +41,9 @@ export const isTokenExpired = () => {
     return currentDate > tokenExpiryDateInMilliseconds;
 }
 
+export const logOut = () => {
+	localStorage.removeItem('pbAccessToken')
+	localStorage.removeItem('pbRefreshToken')
+	localStorage.removeItem('tokenExpiryDate')
+}
+

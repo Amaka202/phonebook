@@ -27,6 +27,10 @@ module.exports = {
         
       },
       tableLayout: ['hover', 'focus'],
+
+      tableText: {
+        fontSize: '5rem'
+      }
     },
   },
   variants: {
