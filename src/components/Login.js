@@ -1,35 +1,53 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import {useHistory} from 'react-router-dom';
 import CustomHeader from './CustomHeader';
 import { Button }from 'rsuite';
 import {encryptToken} from './helperFnxs';
-import {loginFnx} from './apiCalls';
+import {connect} from 'react-redux';
+import {loginUser} from '../store/actionCreators/authAction';
 
-function Login() {
+function Login({loginUser, authData, loginSuccessTime, loginErrorTime}) {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
     const [message, setMessage] = useState('');
-    const onSubmit = (loginCredentials) => {
+    const [loading, setLoading] = useState(false);
 
-        loginFnx(loginCredentials, setMessage).then(data => {
-            if(!data.code){
-                encryptToken( data.token.accessToken, 'pbAccessToken')
-                encryptToken(data.token.refreshToken, 'pbRefreshToken')
-                encryptToken(data.token.expiresIn, 'tokenExpiryDate')
-                history.push('/contacts')
-            }else{
-                setMessage(data.message)  
-                setTimeout(() => setMessage(''), 3000)          
-            }
-        })
+    const onSubmit = (loginCredentials) => {
+        setLoading(true)
+        loginUser(loginCredentials)
     };
 
-    
+    useEffect(() => {
+        if(authData){
+            if(!authData.code){
+                encryptToken( authData.token.accessToken, 'pbAccessToken')
+                encryptToken(authData.token.refreshToken, 'pbRefreshToken')
+                encryptToken(authData.token.expiresIn, 'tokenExpiryDate')
+                history.push('/contacts')
+            }else{
+                setLoading(false)
+                setMessage(authData.message)  
+                setTimeout(() => setMessage(''), 3000) 
+            }
+        }
+    }, [loginSuccessTime])
+
+    useEffect(() => {
+        if(loginErrorTime){
+            setLoading(false)
+            setMessage('Error logging in')  
+            setTimeout(() => setMessage(''), 3000)
+        }
+    }, [loginErrorTime])
+
+    const redirectToLogin = () => {
+        history.push('/')
+    }
 
     return (
         <div>
-            <CustomHeader text='Login'/>
+            <CustomHeader handleClick={redirectToLogin} text='Login'/>
             
             <div className='bg-background-color min-h-minH mt-1 flex justify-center align-center'>
             <section className="loginSection">
@@ -68,6 +86,11 @@ function Login() {
                     </Button>
                     
                 </div>
+                {loading && <div class="loader bg-white p-5 rounded-full flex justify-center items-center space-x-3 ">
+                <div class="w-3 h-3 bg-primary-color rounded-full animate-bounce"></div>
+                <div class="w-3 h-3 bg-primary-color rounded-full "></div>
+                <div class="w-3 h-3 bg-primary-color rounded-full animate-bounce"></div>
+                </div>}
                 
             
             </form>
@@ -78,4 +101,18 @@ function Login() {
     )
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        authData: state.auth.data,
+        loginSuccessTime: state.auth.loginSuccessTime,
+        loginErrorTime: state.auth.loginErrorTime
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginUser: (loginCredentials) => dispatch(loginUser(loginCredentials)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

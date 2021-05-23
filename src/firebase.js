@@ -15,7 +15,7 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore().collection('contacts');
+const db = firebase.firestore().collection('Contact');
 
 export { db };
 
