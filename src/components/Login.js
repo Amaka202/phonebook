@@ -31,7 +31,7 @@ function Login({loginUser, authData, loginSuccessTime, loginErrorTime}) {
                 setTimeout(() => setMessage(''), 3000) 
             }
         }
-    }, [loginSuccessTime])
+    }, [loginSuccessTime, authData, history])
 
     useEffect(() => {
         if(loginErrorTime){

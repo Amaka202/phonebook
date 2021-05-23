@@ -51,7 +51,7 @@ function CreateContactModal(props) {
             setTimeout(() => setMessage(''), 3000)          
         }
       }
-    }, [createContactSuccessTime])
+    }, [createContactSuccessTime, setShowContactForm, reset, createContactData])
 
     useEffect(() => {
       if(createContactError || refreshTokenError ){
