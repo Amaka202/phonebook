@@ -1,6 +1,6 @@
-const iniState = {}
+const initialState = {}
  
-const createContactsReducer = (state = iniState, action) => {
+const createContactsReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'CREATE CONTACT SUCCESS':
             return {
@@ -17,7 +17,8 @@ const createContactsReducer = (state = iniState, action) => {
             return {
                 ...state,
                 refreshTokenError: action.refreshTokenError
-            }
+            }  
+
         default:
             return state;
     }

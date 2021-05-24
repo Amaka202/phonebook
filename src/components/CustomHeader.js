@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-function Header(props) {
+function CustomHeader(props) {
     return (
         <div className='flex justify-between align-center md:px-12 md:py-4 px-6 py-6 shadow-bottom'>
             <p className='text-primary-color md:text-4xl text-2xl font-bold self-center'>Phonebook</p>
@@ -9,4 +9,4 @@ function Header(props) {
     )
 }
 
-export default Header
+export default CustomHeader;
