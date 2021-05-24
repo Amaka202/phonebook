@@ -89,13 +89,13 @@ function Contacts({logOut}) {
                          Contacts({contacts ? contacts.length : 0})
                         </td>
                     </tr>
-                        {contacts && contacts.slice(0, 10).map(contact => {
+                        {contacts && contacts.map(contact => {
                             return (
                                     <tr className={"hover:bg-hover-green hover:rounded-md " + styles.row} key={contact.documentId}>
                                     <td className="px-4 py-2 w-1/4 rounded">
                                         <div className='flex justify-start align-start'>
                                             <div className='initialNameDiv w-1/3'>
-                                                <p className=' text-white font-bold self-center text-sm'>{contact.firstName.charAt(0)}</p>
+                                                <p className=' text-white font-bold self-center text-sm'>{contact.firstName.charAt(0).toUpperCase()}</p>
                                             </div>
                                             <p className='self-center w-2/3'>{contact.firstName} {contact.lastName}</p>
                                         </div>
@@ -104,9 +104,9 @@ function Contacts({logOut}) {
                                     <td className="px-4 py-2 w-1/4 rounded">{contact.address}</td>
 
                                     <td className="px-4 py-2 w-1/4 rounded text-right" >
-                                        <div className={styles.editIcon}>
-                                            <img src={editIcon} alt='edit icon' className='h-4 w-4'/>
-                                            <img src={deleteIcon} alt='delete icon' className='h-4 w-4 ml-6'/>
+                                        <div className={" " + styles.editIcon}>
+                                            <img src={editIcon} alt='edit icon' className='h-4 w-4 md:mr-6 mr-1'/>
+                                            <img src={deleteIcon} alt='delete icon' className='h-4 w-4 '/>
                                         </div>
                                     </td>
                                     </tr>

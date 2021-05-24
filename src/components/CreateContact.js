@@ -18,6 +18,9 @@ function CreateContactModal(props) {
 
     const onSubmit = (contactData) => {
       setLoading(true)
+      let newContactData = {...contactData}
+      newContactData['firstName'] = newContactData.firstName.charAt(0).toUpperCase() + newContactData.firstName.slice(1)
+      newContactData['lastName'] = newContactData.lastName.charAt(0).toUpperCase() + newContactData.lastName.slice(1)
       let bearerToken = decryptToken('pbAccessToken');
         if(
           bearerToken != null &&
@@ -25,9 +28,9 @@ function CreateContactModal(props) {
         ){ 
           let tokenExpired = isTokenExpired();
           if(!tokenExpired){
-            createContact(contactData)
+            createContact(newContactData)
           }else{
-            getRefreshToken(contactData)
+            getRefreshToken(newContactData)
           }
         }else{
           setLoading(false)
@@ -40,15 +43,14 @@ function CreateContactModal(props) {
 
     useEffect(() => {
       if(createContactData){
-        if(!createContactData.code){
+        if(createContactData.code){
+          setLoading(false)
+            setMessage('Fill all required fields')  
+            setTimeout(() => setMessage(''), 3000) 
+        }else{
           reset()
           setLoading(false)
           setShowContactForm(false)
- 
-        }else{
-          setLoading(false)
-            setMessage('Fill all required fields')  
-            setTimeout(() => setMessage(''), 3000)          
         }
       }
     }, [createContactSuccessTime, setShowContactForm, reset, createContactData])
