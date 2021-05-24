@@ -104,7 +104,7 @@ function Contacts({logOut}) {
                                     <td className="px-4 py-2 w-1/4 rounded">{contact.address}</td>
 
                                     <td className="px-4 py-2 w-1/4 rounded text-right" >
-                                        <div className={" " + styles.editIcon}>
+                                        <div className={styles.editIcon}>
                                             <img src={editIcon} alt='edit icon' className='h-4 w-4 md:mr-6 mr-1'/>
                                             <img src={deleteIcon} alt='delete icon' className='h-4 w-4 '/>
                                         </div>
