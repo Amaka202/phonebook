@@ -14,7 +14,7 @@
 
 
 .input {
-    @apply border border-primary-color w-full rounded p-3 text-sm placeholder-placeholder-color focus:outline-none;
+    @apply border border-primary-color w-full rounded p-3.5 text-sm placeholder-placeholder-color focus:outline-none;
     
   }
 
@@ -27,7 +27,7 @@
 }
 
 .initialNameDiv{
-    @apply bg-primary-color inline-block border rounded-round w-8 h-8 mr-4 flex justify-center self-center
+    @apply bg-primary-color inline-block border rounded-round md:w-8 md:h-8 w-6 h-6 mr-4 flex justify-center self-center
 }
 
 .contactsForm {

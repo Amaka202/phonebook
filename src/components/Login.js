@@ -56,7 +56,7 @@ function Login({loginUser, authData, loginSuccessTime, loginErrorTime}) {
                 <p className='text-primary-color md:text-3xl text-xl font-bold text-center md:mb-14 mb-10'>Welcome to Phonebook!</p>
 
                 <div className="mb-6">
-                    <label className='block	text-primary-color font-bold mb-3'>Email Address</label>
+                    <label className='block	text-primary-color font-bold mb-3 text-tableText'>Email Address</label>
                     <input name="email" placeholder="Enter email address"  className='input'
                         {...register("email", { 
                             required: 'This field is required',
@@ -68,7 +68,7 @@ function Login({loginUser, authData, loginSuccessTime, loginErrorTime}) {
                     {errors.email && <span className='text-red-600 italic text-xs'>{errors.email.message}</span>}
                 </div>
                 <div className="mb-6">
-                <label className='block	text-primary-color font-bold mb-3'>Password</label>
+                <label className='block	text-primary-color font-bold mb-3 text-tableText'>Password</label>
 
                     <input name="password" placeholder="Enter password" type='password' className='input'
                         {...register("password", { 
@@ -81,7 +81,7 @@ function Login({loginUser, authData, loginSuccessTime, loginErrorTime}) {
                     {errors.password && <span className='text-red-600 italic text-xs'>{errors.password.message}</span>}
                 </div>
                 <div className=" mt-8" >
-                    <Button className='bg-primary-color w-full rounded p-3 text-sm text-white font-bold' type='submit'>
+                    <Button className='bg-primary-color w-full rounded p-3.5 text-sm text-white font-bold' type='submit'>
                         Login
                     </Button>
                     

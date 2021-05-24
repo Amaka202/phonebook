@@ -1,0 +1,12 @@
+.editIcon{
+    display: none;
+}
+
+.editIcon > *{
+    display: inline;
+    vertical-align: middle;
+}
+
+.row:hover .editIcon{
+    display: block;
+}
