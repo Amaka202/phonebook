@@ -6,13 +6,11 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: action.response,
-                authStatus: 'success',
                 loginSuccessTime: action.loginSuccessTime
             }
         case 'LOGIN USER ERROR':
             return {
                 ...state,
-                authStatus: 'error',
                 loginErrorTime: action.loginErrorTime
              }
         case 'LOG OUT USER':

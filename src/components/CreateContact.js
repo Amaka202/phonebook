@@ -36,24 +36,23 @@ function CreateContactModal(props) {
           setLoading(false)
           setMessage('Unauthorized') 
           setTimeout(() => setMessage(''), 3000)
-
         }
-        
     }
 
     useEffect(() => {
       if(createContactData){
-        if(createContactData.code){
-          setLoading(false)
-            setMessage('Fill all required fields')  
-            setTimeout(() => setMessage(''), 3000) 
-        }else{
+        if(!createContactData.code){
           reset()
           setLoading(false)
           setShowContactForm(false)
-        }
+        }else{
+          setLoading(false)
+          setMessage(createContactData.message)  
+          setTimeout(() => setMessage(''), 3000) 
       }
-    }, [createContactSuccessTime, setShowContactForm, reset, createContactData])
+    }
+      // eslint-disable-next-line
+    }, [createContactSuccessTime, createContactData])
 
     useEffect(() => {
       if(createContactError || refreshTokenError ){
@@ -122,12 +121,11 @@ function CreateContactModal(props) {
                     {errors.address && <span className='text-red-600 italic text-xs'>{errors.address.message}</span>}
                 </div>
                 <div className="mb-4" >
-                 <button className='bg-primary-color w-full rounded p-3 text-sm text-white font-bold' type='submit'>
+                 <button className='bg-primary-color w-full rounded p-3.5 text-sm text-white font-bold' type='submit'>
                      Create
                  </button>
-
                 </div>
-                <div className=" " >
+                <div>
                  <button className='bg-white border border-border-color w-full rounded p-3 text-sm text-cancel-color font-bold' type='submit'
                     onClick={() => {
                         handleCancel();

@@ -1,11 +1,11 @@
 import {decryptToken, encryptToken} from '../../components/helperFnxs';
+
 const createContactApiUrl = 'https://we-skillz-phonebook-task.herokuapp.com/api/v1/contacts';
 const refreshApiUrl = 'https://we-skillz-phonebook-task.herokuapp.com/api/v1/auth/refresh';
 const email = process.env.REACT_APP_EMAIL;
-const bearerToken = decryptToken('pbAccessToken');
-const refreshToken = decryptToken('pbRefreshToken');
 
 export const createContact = (contactData) => {
+    const bearerToken = decryptToken('pbAccessToken');
     return (dispatch, getState) => {
         fetch(createContactApiUrl, {
             method: 'POST',
@@ -35,6 +35,9 @@ export const createContact = (contactData) => {
 }
 
 export const getRefreshToken = (contactData) => {
+    const bearerToken = decryptToken('pbAccessToken');
+    const refreshToken = decryptToken('pbRefreshToken');
+
     return (dispatch, getState) => {
         fetch(refreshApiUrl, {
             method: 'POST',
@@ -82,3 +85,5 @@ export const getRefreshToken = (contactData) => {
             })
     }
 }
+
+
