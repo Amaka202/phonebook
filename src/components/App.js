@@ -1,6 +1,5 @@
 import React from 'react';
 import Login from './Login';
-import 'rsuite/lib/styles/index.less';
 import { Route, Switch } from "react-router-dom";
 import Contacts from './Contacts';
 import {ProtectedRoutes} from './ProtectedRoute';
